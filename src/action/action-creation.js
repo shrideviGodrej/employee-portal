@@ -3,8 +3,11 @@ import axios from "axios"
 import * as ActionTypes from "./action-types"
 
 const API_URL = process.env.REACT_APP_EMPLOYEE_API_URL
+console.log(API_URL)
 
 export function loadEmployees() {
+
+    console.log(API_URL)
     return async (dispatch) => {
         let result
         try {
@@ -13,6 +16,7 @@ export function loadEmployees() {
                 type: ActionTypes.GET_EMPLOYEES,
                 payload: result.data
             })
+            console.log(result.data)
             return Promise.resolve(result.data)
         }
         catch (e) {

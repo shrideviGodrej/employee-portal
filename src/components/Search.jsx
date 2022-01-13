@@ -4,8 +4,8 @@ import { EmployeeContext } from "./Home";
 
 export default function SearchBar(){
     const searchInput = useRef('')
-    const {doSearch,employees, data} =  useContext(EmployeeContext)
-   // console.log(employees,data)
+    const {doSearch, data,employees} =  useContext(EmployeeContext)
+   console.log(employees,data)
     return(
         <Form>
             <InputGroup className="mb-3">

@@ -6,6 +6,7 @@ import {Trash} from "react-bootstrap-icons"
 import { deleteEmployee } from "../action/action-creation";
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
+import "../trash.css"
 function EmployeeList ({deleteEmployee}) {
 
     const {data} =  useContext(EmployeeContext)
@@ -19,7 +20,7 @@ function EmployeeList ({deleteEmployee}) {
     
     return (
     <React.Fragment>
-        <Link to='/employees/create'>Add Employees</Link>
+        <Link to='/employees/create' className="btn btn-success">Add Employees</Link>
     <Table striped bordered hover>
         <thead>
         <tr>

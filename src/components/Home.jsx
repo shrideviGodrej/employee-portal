@@ -18,31 +18,15 @@ export class Home extends Component {
         this.handleSearch = this.handleSearch.bind(this)
     }
 
-    static getDerivedStateFromProps(props, state) {
-        console.log(props.employees.length)
-        console.log(props.filteredResult.length)
-
-        console.log(props.filteredResult)
-        console.log(props.employees)
-        let searchFilter
-        console.log("Search")
-        console.log(state.filteredResult)
-        if (state.filteredResult  && state.filteredResult.length != 0) {
-            console.log("Search1")
-            searchFilter = state.filteredResult
-        }
-        if(props.filteredResult  && props.filteredResult.length != 0)  {
-            console.log("Search2")
-            searchFilter = props.filteredResult
-        }
-        if (props.employees.length != 0) {
-            console.log("searchRe")
+    static getDerivedStateFromProps(newProps, oldState) {
+        if (newProps.employees.length != oldState.employees.length) {
+            console.log("Props changed", newProps)
             return {
-                employee: props.employees,
-                filteredResult:searchFilter
+                employees: newProps.employees,
+                filteredResult: newProps.employees
             }
         }
-
+        return null;
     }
 
     async componentDidMount() {
@@ -86,8 +70,8 @@ export class Home extends Component {
 function mapStateToProps(state) {
     return {
         employees: state.employeestate.employees,
-        filteredResult: state.employeestate.employees
+        filteredResult:state.employeestate.employees
     }
 
 }
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps,null)(Home);

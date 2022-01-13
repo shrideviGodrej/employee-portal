@@ -10,9 +10,17 @@ import AddEmployee from './components/employeeAdd';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import {loadEmployees} from "./action/action-creation"
+import { Amplify} from 'aws-amplify';
+import {Authenticator} from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsEXports from './aws-exports';
+Amplify.configure(awsEXports);
+
 function App({loadEmployees}) {
   loadEmployees()
   return (
+    <Authenticator loginMechanisms={['username']}> 
+    {({signout,user}) => 
     <Router>
          <Navbar bg="dark" variant="dark">
           <Container>
@@ -21,6 +29,8 @@ function App({loadEmployees}) {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/About">About</Nav.Link>
               <Nav.Link as={Link} to="/Contact">Contact</Nav.Link>
+              <Nav.Link onClick={signout}>Signout</Nav.Link>
+              <Nav.Link >Welcome {user.username}</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -34,7 +44,9 @@ function App({loadEmployees}) {
         </Routes>
       </div>
     </Router>
-
+}
+    </Authenticator>
+  
   );
 
 }

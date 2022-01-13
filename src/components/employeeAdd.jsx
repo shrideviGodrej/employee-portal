@@ -41,6 +41,9 @@ class employeeAdd extends Component {
         const { Added, employee } = this.state
 
         let result =  this.props.AddEmployee(this.state.employee)
+        if(result.length != 0){
+            this.setState({Added:"Added Successfully"})
+        }
         //AddEmployee(employee).then(this.setState({Added:"Added Successfully"})).catch(this.setState({Added:"Error Adding Successfully"}));
         
 
